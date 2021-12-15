@@ -1,0 +1,13 @@
+* {
+  box-sizing: border-box;
+}
+
+img {
+  width: 180px;
+}
+
+.editorimg {
+  /* object-fit: cover; */
+  width: 25px;
+  height: 25px;
+}

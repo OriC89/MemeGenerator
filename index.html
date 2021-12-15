@@ -6,10 +6,60 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meme Generator</title>
+    <link rel="stylesheet" href="./css/main.css">
 </head>
 
-<body>
+<body onload="onInit()">
+    <header></header>
+    <main>
 
+        <section class="gallary">
+            <div class="imges-gallary"></div>
+        </section>
+
+        <section class="editor">
+            <div class="canvas-container">
+                <canvas id="my-canvas" onclick="onCanvasClick(event)" width="500" height="400"></canvas>
+            </div>
+
+            <div class="linecontroller">
+                <input type="text" placeholder="Write Your Text Here" id="addTxt" class="addTxt"
+                    onkeyup="onSetLineTxt(this.value)">
+            </div>
+            <div class="text-alignment">
+                <button onclick="onAlignCenter()"><img class="editorimg" src="./img/editor/align-center.png"
+                        alt=""></button>
+                <button onclick="onAlignLeft()"><img class="editorimg" src="./img/editor/align-left.png"
+                        alt=""></button>
+                <button onclick="onAlignRight()"><img class="editorimg" src="./img/editor/align-right.png"
+                        alt=""></button>
+                <button onclick="onIncreaseTextSize()"><img class="editorimg" src="./img/editor/increase-font.png"
+                        alt=""></button>
+                <button onclick="onDecreaseTextSize()"><img class="editorimg" src="./img/editor/decrease-font.png"
+                        alt=""></button>
+                <button><input type="color" class="editorimg" onchange="onGetColor(this.value)"></button>
+                <button>Stroke Color</button>
+            </div>
+            <button>Meme Actions
+                <select name="" id="">
+                    <option value="default">Actions</option>
+                    <option value="sharefb">Share on Facebook</option>
+                    <option value="save">Save</option>
+                    <option value="download">Download</option>
+            </button>
+            </select>
+
+        </section>
+
+    </main>
+    <footer></footer>
+
+    <script src="./js/utils.js"></script>
+    <script src="./js/services/storage.service.js"></script>
+    <script src="./js/services/gallary.service.js"></script>
+    <script src="./js/services/meme.service.js"></script>
+    <script src="./js/gallary.controller.js"></script>
+    <script src="./js/meme.controller.js"></script>
 </body>
 
 </html>
