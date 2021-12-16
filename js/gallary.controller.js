@@ -10,6 +10,7 @@ function renderGallery() {
     })
 }
 
+// SELECTING IMG TO EDITOR
 function onImgSelect(imdId) {
     imgSelect(imdId)
     renderMeme()

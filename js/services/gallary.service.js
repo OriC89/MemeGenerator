@@ -3,11 +3,12 @@
 var gImgNextId = 0
 var gImgs = []
 
-
+// RETURNS gImgs
 function getImgs() {
     return gImgs
 }
 
+// CREATES IMGS
 function createImgs() {
     gImgs = [
         createImg('1', 'political', 'trump'),
@@ -31,6 +32,7 @@ function createImgs() {
     ]
 }
 
+// CREATE IMG
 function createImg(imgName, ...keys) {
     return {
         id: gImgNextId++,
@@ -39,7 +41,17 @@ function createImg(imgName, ...keys) {
     }
 }
 
+// SELECTING IMG TO EDITOR
 function imgSelect(imgId) {
     const meme = getMeme()
     meme.selectedImgId = imgId
+}
+
+// RETURN IMG BY ID
+function getImgById(imgId) {
+    const imgs = getImgs()
+    const img = imgs.find(img => {
+        return imgId === img.id
+    })
+    return img
 }

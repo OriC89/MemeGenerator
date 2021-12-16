@@ -19,38 +19,61 @@
 
         <section class="editor">
             <div class="canvas-container">
-                <canvas id="my-canvas" onclick="onCanvasClick(event)" width="500" height="400"></canvas>
+                <canvas id="my-canvas" onclick="onCanvasClick(event)" width="500" height="500"></canvas>
             </div>
 
-            <div class="linecontroller">
-                <input type="text" placeholder="Write Your Text Here" id="addTxt" class="addTxt"
+            <div class="lines-container">
+                <input class="txt-line" type="text" placeholder="Write Your Text Here" id="addTxt" class="addTxt"
                     onkeyup="onSetLineTxt(this.value)">
             </div>
-            <div class="text-alignment">
-                <button onclick="onAlignCenter()"><img class="editorimg" src="./img/editor/align-center.png"
+            <div class="text-position">
+                <button onclick="onDeleteLine()"><img class="editorimg" src="./img/editor/delete.png" alt=""></button>
+                <button onclick="onToggleLine(value)"><img class="editorimg" src="./img/editor/toggle.png"
                         alt=""></button>
+                <button onclick="onAddLine()"><img class="editorimg" src="./img/editor/add.png" alt=""></button>
+                <button onclick="onMoveUp()"><img class="editorimg" src="./img/editor/up-arrow.png" alt=""></button>
+                <button onclick="onMoveDown()"><img class="editorimg" src="./img/editor/down.png" alt=""></button>
+            </div>
+
+            <div class="text-alignment">
                 <button onclick="onAlignLeft()"><img class="editorimg" src="./img/editor/align-left.png"
+                        alt=""></button>
+                <button onclick="onAlignCenter()"><img class="editorimg" src="./img/editor/align-center.png"
                         alt=""></button>
                 <button onclick="onAlignRight()"><img class="editorimg" src="./img/editor/align-right.png"
                         alt=""></button>
+            </div>
+
+            <div class="text-size">
+                <button>
+                    <select name="font" onchange="onSetFont(this.value)">
+                        <option value="Impact">Impact</option>
+                        <option value="times-new-roman">Times New Roman</option>
+                        <option value="Arial">Arial</option>
+                        <option value="david">David</option>
+                    </select>
+                    <img class="editorimg" src="./img/editor/speech-bubble.png" alt="">
+                </button>
                 <button onclick="onIncreaseTextSize()"><img class="editorimg" src="./img/editor/increase-font.png"
                         alt=""></button>
                 <button onclick="onDecreaseTextSize()"><img class="editorimg" src="./img/editor/decrease-font.png"
                         alt=""></button>
-                <button><input type="color" class="editorimg" onchange="onGetColor(this.value)"></button>
-                <button>Stroke Color</button>
             </div>
-            <button>Meme Actions
-                <select name="" id="">
-                    <option value="default">Actions</option>
-                    <option value="sharefb">Share on Facebook</option>
-                    <option value="save">Save</option>
-                    <option value="download">Download</option>
-            </button>
-            </select>
 
+            <div class="text-color">
+                <button><img class="editorimg" src="./img/editor/txt-color.png" alt=""><input type="color"
+                        class="editorimg" onchange="onGetColor(this.value)"></button>
+                <button><img class="editorimg" src="./img/editor/stroke-color.png" alt=""><input type="color"
+                        class="editorimg" onchange="onStrokeColor(this.value)"></button>
+            </div>
+
+            <div class="actions">
+                <button><a href="#" class="btn" onclick="DownloadCanvas(this)" download="my-img.jpg"><img
+                            src="./img/editor/download.png" class="editorimg" alt=""></a></button>
+                <button class="fbshare"><img class="editorimg" src="./img/editor/facebook.png" alt=""></button>
+                <button><input type="file" onchange="onImgInput(event)" /></button>
+            </div>
         </section>
-
     </main>
     <footer></footer>
 
