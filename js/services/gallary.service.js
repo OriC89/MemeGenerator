@@ -11,24 +11,24 @@ function getImgs() {
 // CREATES IMGS
 function createImgs() {
     gImgs = [
-        createImg('1', 'political', 'trump'),
-        createImg('2', 'political', 'trump'),
-        createImg('3', 'political', 'trump'),
-        createImg('4', 'political', 'trump'),
-        createImg('5', 'political', 'trump'),
-        // createImg('6', 'political', 'trump'),
-        // createImg('7', 'political', 'trump'),
-        // createImg('8', 'political', 'trump'),
-        // createImg('9', 'political', 'trump'),
-        // createImg('10', 'political', 'trump'),
-        // createImg('11', 'political', 'trump'),
-        // createImg('12', 'political', 'trump'),
-        // createImg('13', 'political', 'trump'),
-        // createImg('14', 'political', 'trump'),
-        // createImg('15', 'political', 'trump'),
-        // createImg('16', 'political', 'trump'),
-        // createImg('17', 'political', 'trump'),
-        // createImg('18', 'political', 'trump')
+        createImg('1', 'political', 'Trump', 'celebrity'),
+        createImg('2', 'dogs', 'animal'),
+        createImg('3', 'baby', 'dog', 'animals'),
+        createImg('4', 'cat', 'animals'),
+        createImg('5', 'baby', 'victory', 'happy'),
+        createImg('6', 'celebrity', 'history'),
+        createImg('7', 'baby', 'happy'),
+        createImg('8', 'happy'),
+        createImg('9', 'baby', 'happy'),
+        createImg('10', 'political', 'Obama', 'happy'),
+        createImg('11', 'sports', 'angry', 'celebrity'),
+        createImg('12', 'celebrity', 'Israel'),
+        createImg('13', 'celebrity', 'happy', 'movie'),
+        createImg('14', 'movies', 'celebrity'),
+        createImg('15', 'movie', 'celebrity'),
+        createImg('16', 'movie', 'celebrity'),
+        createImg('17', 'political', 'celebrity', 'Putin'),
+        createImg('18', 'movie', 'toys')
     ]
 }
 
