@@ -25,6 +25,7 @@ function getImg(meme) {
         gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
         meme.lines.map((line, lineIdx) => {
             return writeText(line.txt, line.x, line.y, lineIdx)
+
         })
     }
 }
@@ -36,10 +37,10 @@ function writeText(txt, x, y, index) {
     gCtx.fillStyle = `${meme.lines[index].color}`
     gCtx.strokeStyle = `${meme.lines[index].stroke}`
     gCtx.font = `${meme.lines[index].size}px ${meme.lines[index].font}`
+    gCtx.textAlign = `${meme.lines[index].align}`
     gCtx.strokeText(txt, x, y, gCanvas.width)
     gCtx.fillText(txt, x, y, gCanvas.width)
-    gCtx.textAlign = `${gMeme.lines[index].align}`
-    gCtx.stroke()
+    // gCtx.stroke()
 }
 
 // CHANGES THE TEXT FROM INPUT

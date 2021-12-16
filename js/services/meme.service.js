@@ -45,9 +45,11 @@ function addLine() {
         stroke: gMeme.lines[gMeme.selectedLineIdx].stroke,
         font: gMeme.lines[gMeme.selectedLineIdx].font,
         x: gMeme.lines[gMeme.selectedLineIdx].x,
-        y: gMeme.lines[gMeme.selectedLineIdx].y + 170
+        y: gMeme.lines[gMeme.selectedLineIdx].y + 160
     })
     gMeme.selectedLineIdx++
+    console.log('gMeme.selectedLineIdx:', gMeme.selectedLineIdx)
+
 }
 
 // DELETE LINE
@@ -81,19 +83,16 @@ function DownloadCanvas(elLink) {
 
 // ALIGN TXT LEFT
 function setAlignLeft() {
-    gCtx.textAlign = 'right'
     gMeme.lines[gMeme.selectedLineIdx].align = 'right'
 }
 
 // ALIGN TXT RIGHT
 function setAlignRight() {
-    gCtx.textAlign = 'left'
     gMeme.lines[gMeme.selectedLineIdx].align = 'left'
 }
 
 // ALIGN TXT CENTER
 function setAlignCenter() {
-    gCtx.textAlign = 'center'
     gMeme.lines[gMeme.selectedLineIdx].align = 'center'
 }
 

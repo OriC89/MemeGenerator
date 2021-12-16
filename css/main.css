@@ -7,6 +7,10 @@ body {
   margin: 0;
 }
 
+button {
+  cursor: pointer;
+}
+
 /* HELPERS */
 .clean-list {
   list-style-type: none;
@@ -44,11 +48,36 @@ body {
 .header {
   color: rgb(255, 255, 255);
   background-color: rgb(255, 127, 0);
-  font-family: "Montserrat";
 }
 
 .main-nav li {
-  font-size: 1.1875rem;
+  font-size: 1.4875rem;
+  width: 4.6875rem;
+}
+
+.main-nav a {
+  color: rgb(255, 255, 255);
+  font-family: "Montserrat";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  font-weight: 400;
+}
+
+.main-nav li a:hover {
+  color: #040a2c;
+  box-shadow: inset 0px -4px 0 rgb(4, 10, 44);
+}
+
+.main-nav li a:focus {
+  color: #040a2c;
+  box-shadow: inset 0px -4px 0 rgb(4, 10, 44);
+}
+
+.logo img {
+  padding: 10px 0px;
+  width: 20%;
 }
 
 /* GALLARY */
