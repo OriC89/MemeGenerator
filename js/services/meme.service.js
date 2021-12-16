@@ -39,13 +39,13 @@ function addLine() {
     if (gMeme.lines.length > 2) return
     gMeme.lines.push({
         txt: '',
-        size: 50,
+        size: gMeme.lines[gMeme.selectedLineIdx].size,
         align: gMeme.lines[gMeme.selectedLineIdx].align,
         color: gMeme.lines[gMeme.selectedLineIdx].color,
         stroke: gMeme.lines[gMeme.selectedLineIdx].stroke,
         font: gMeme.lines[gMeme.selectedLineIdx].font,
         x: gMeme.lines[gMeme.selectedLineIdx].x,
-        y: gMeme.lines[gMeme.selectedLineIdx].y + 160
+        y: gMeme.lines[gMeme.selectedLineIdx].y + 170
     })
     gMeme.selectedLineIdx++
 }

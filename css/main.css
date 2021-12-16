@@ -2,12 +2,88 @@
   box-sizing: border-box;
 }
 
-img {
-  width: 180px;
+/* BASICS */
+body {
+  margin: 0;
+}
+
+/* HELPERS */
+.clean-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.margin {
+  margin: 0;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex.space-between {
+  justify-content: space-between;
+}
+
+.flex.align-center {
+  align-items: center;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+/* LAYOUT */
+.main-layout {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* HEADER */
+.header {
+  color: rgb(255, 255, 255);
+  background-color: rgb(255, 127, 0);
+  font-family: "Montserrat";
+}
+
+.main-nav li {
+  font-size: 1.1875rem;
+}
+
+/* GALLARY */
+.gallary img {
+  width: 32%;
+  padding-right: 20px;
+  padding-bottom: 25px;
+}
+
+.imges-gallary {
+  padding-left: 50px;
+  padding-top: 25px;
+  background-color: rgb(227, 227, 227);
+  flex-wrap: wrap;
+}
+
+/* MAIN */
+main {
 }
 
 .editorimg {
-  /* object-fit: cover; */
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
+}
+
+/* FOOTER */
+
+.footer {
+  text-align: center;
+  font-weight: 250;
+  font: 1.1875rem;
+  font-family: "Montserrat";
+  background-color: rgb(255, 127, 0);
+}
+
+.footer h3 {
+  padding-bottom: 80px;
 }

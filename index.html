@@ -10,11 +10,21 @@
 </head>
 
 <body onload="onInit()">
-    <header></header>
-    <main>
 
+    <header class="header">
+        <div class="main-layout">
+            <nav class="main-nav">
+                <ul class="clean-list">
+                    <li><a href="#"></a>Gallary</li>
+                    <li><a href="#"></a>About</li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-layout">
         <section class="gallary">
-            <div class="imges-gallary"></div>
+            <div class="imges-gallary flex"></div>
         </section>
 
         <section class="editor">
@@ -75,14 +85,20 @@
             </div>
         </section>
     </main>
-    <footer></footer>
 
-    <script src="./js/utils.js"></script>
-    <script src="./js/services/storage.service.js"></script>
-    <script src="./js/services/gallary.service.js"></script>
-    <script src="./js/services/meme.service.js"></script>
-    <script src="./js/gallary.controller.js"></script>
-    <script src="./js/meme.controller.js"></script>
+    <footer class="footer">
+        <div class=" main-layout">
+            <h3>all rights reserved 2019</h3>
+        </div>
+    </footer>
+
+
+    <script src="js/utils.js"></script>
+    <script src="js/services/storage.service.js"></script>
+    <script src="js/services/gallary.service.js"></script>
+    <script src="js/services/meme.service.js"></script>
+    <script src="js/gallary.controller.js"></script>
+    <script src="js/meme.controller.js"></script>
 </body>
 
 </html>
