@@ -16,79 +16,118 @@
             <div class="logo"><img src="./img/logo/LOGO.png" alt=""></div>
             <nav class="main-nav">
                 <ul class="clean-list flex">
-                    <li><a href="#">Gallary</a></li>
-                    <li><a href="#">About</a></li>
+                    <li><a onclick="onToggleGallary()" href="#Gallary">Gallary</a></li>
+                    <li><a href="#about">About</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main class="main-layout">
-        <section class="gallary">
-            <div class="imges-gallary flex"></div>
+        <section id="gallary" class="active none-active gallary">
+            <div class="imges-gallary flex space-between align-center"></div>
         </section>
 
-        <section class="editor">
+        <section class="meme-generator flex none-active">
             <div class="canvas-container">
                 <canvas id="my-canvas" onclick="onCanvasClick(event)" width="500" height="500"></canvas>
             </div>
 
-            <div class="lines-container">
-                <input class="txt-line" type="text" placeholder="Write Your Text Here" id="addTxt" class="addTxt"
-                    onkeyup="onSetLineTxt(this.value)">
-            </div>
-            <div class="text-position">
-                <button onclick="onDeleteLine()"><img class="editorimg" src="./img/editor/delete.png" alt=""></button>
-                <button onclick="onToggleLine(value)"><img class="editorimg" src="./img/editor/toggle.png"
-                        alt=""></button>
-                <button onclick="onAddLine()"><img class="editorimg" src="./img/editor/add.png" alt=""></button>
-                <button onclick="onMoveUp()"><img class="editorimg" src="./img/editor/up-arrow.png" alt=""></button>
-                <button onclick="onMoveDown()"><img class="editorimg" src="./img/editor/down.png" alt=""></button>
-            </div>
 
-            <div class="text-alignment">
-                <button onclick="onAlignLeft()"><img class="editorimg" src="./img/editor/align-left.png"
-                        alt=""></button>
-                <button onclick="onAlignCenter()"><img class="editorimg" src="./img/editor/align-center.png"
-                        alt=""></button>
-                <button onclick="onAlignRight()"><img class="editorimg" src="./img/editor/align-right.png"
-                        alt=""></button>
-            </div>
+            <div class="editor-container">
+                <div class="lines-container flex">
+                    <input class="txt-line" type="text" placeholder="Write Your Text Here"
+                        onkeyup="onSetLineTxt(this.value)">
+                    <button onclick="onToggleLine(value)"><img class="editorimg" src="./img/editor/toggle.png"
+                            alt=""></button>
+                    <button onclick="onMoveUp()"><img class="editorimg" src="./img/editor/up.png" alt=""></button>
+                    <button onclick="onMoveDown()"><img class="editorimg" src="./img/editor/down.png" alt=""></button>
+                    <button onclick="onAddLine()"><img class="editorimg" src="./img/editor/add.png" alt=""></button>
+                    <button onclick="onDeleteLine()"><img class="editorimg" src="./img/editor/trash.png"
+                            alt=""></button>
+                </div>
 
-            <div class="text-size">
-                <button>
-                    <select name="font" onchange="onSetFont(this.value)">
-                        <option value="Impact">Impact</option>
-                        <option value="times-new-roman">Times New Roman</option>
-                        <option value="Arial">Arial</option>
-                        <option value="david">David</option>
-                    </select>
-                    <img class="editorimg" src="./img/editor/speech-bubble.png" alt="">
-                </button>
-                <button onclick="onIncreaseTextSize()"><img class="editorimg" src="./img/editor/increase-font.png"
-                        alt=""></button>
-                <button onclick="onDecreaseTextSize()"><img class="editorimg" src="./img/editor/decrease-font.png"
-                        alt=""></button>
-            </div>
 
-            <div class="text-color">
-                <button><img class="editorimg" src="./img/editor/txt-color.png" alt=""><input type="color"
-                        class="editorimg" onchange="onGetColor(this.value)"></button>
-                <button><img class="editorimg" src="./img/editor/stroke-color.png" alt=""><input type="color"
-                        class="editorimg" onchange="onStrokeColor(this.value)"></button>
-            </div>
+                <div class="text-container flex">
+                    <button onclick="onIncreaseTextSize()"><img class="editorimg"
+                            src="./img/editor/increase font - icon.png" alt=""></button>
+                    <button onclick="onDecreaseTextSize()"><img class="editorimg"
+                            src="./img/editor/decrease font - icon.png" alt=""></button>
+                    <button onclick="onAlignLeft()"><img class="editorimg" src="./img/editor/align-to-left.png"
+                            alt=""></button>
+                    <button onclick="onAlignCenter()"><img class="editorimg"
+                            src="./img/editor/center-text-alignment.png" alt=""></button>
+                    <button onclick="onAlignRight()"><img class="editorimg" src="./img/editor/align-to-right.png"
+                            alt=""></button>
+                </div>
 
-            <div class="actions">
-                <button><a href="#" class="btn" onclick="DownloadCanvas(this)" download="my-img.jpg"><img
-                            src="./img/editor/download.png" class="editorimg" alt=""></a></button>
-                <button class="fbshare"><img class="editorimg" src="./img/editor/facebook.png" alt=""></button>
-                <button><input type="file" onchange="onImgInput(event)" /></button>
+
+                <div class="font-controller flex">
+                    <button>
+                        <select name="font" onchange="onSetFont(this.value)">
+                            <option value="Impact">Impact</option>
+                            <option value="times-new-roman">Times New Roman</option>
+                            <option value="Arial">Arial</option>
+                            <option value="David">David</option>
+                        </select>
+                        <img class="editorimg" src="./img/editor/font.png" alt="">
+                    </button>
+                    <button><img class="editorimg" src="./img/editor/paint-board-and-brush.png" alt=""><input
+                            type="color" class="editorimg" onchange="onGetColor(this.value)"></button>
+                    <button><img class="editorimg" src="./img/editor/text stroke.png" alt=""><input type="color"
+                            class="editorimg" onchange="onStrokeColor(this.value)"></button>
+                </div>
+
+
+                <div class="actions flex">
+                    <button><a href="#" class="btn" onclick="DownloadCanvas(this)" download="my-img.jpg"><img
+                                src="./img/editor/download.png" class="editorimg" alt=""></a></button>
+                    <button class="fbshare"><img class="editorimg" src="./img/editor/facebook-logo.png" alt=""></button>
+                    <button><input type="file" onchange="onImgInput(event)" /></button>
+                </div>
             </div>
         </section>
     </main>
 
+    <section id="about" class="about main-layout flex align-center active none-active">
+        <div class="about-img-container">
+            <img src="./img/social/Ori.jpg" alt="">
+        </div>
+        <div class="about-info flex space-between">
+            <h2 class="names">Ori Cohen</h2>
+            <p class="about-txt">
+                33, From Tel-Aviv.
+                Bachelor's degree - marketing and advertising.</p>
+            <p>5+ years of experience of projects and events management - mainly in the gaming industry,
+                Social media management and importation and distribution.</p>
+            <p>My hobbies: discovering nature mysteries, Playing Call of duty Warzone and watching my favorite sports
+                teams losing.</p>
+            <div class="lalala flex">
+                <ul class="social-nav clean-list">
+                    <li>
+                        <a href="https://www.facebook.com/seeku.innerot">
+                            <img src="./img/social/facebookk.png" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/OriCohe21620579">
+                            <img src="./img/social/twitterr.png" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/feed/">
+                            <img src="./img/social/linkedin.png" alt="">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+
     <footer class="footer">
         <div class=" main-layout">
+            <div class="footer-logo"><img src="./img/logo/LOGO.png" alt=""></div>
             <h3>All rights reserved 2019</h3>
         </div>
     </footer>

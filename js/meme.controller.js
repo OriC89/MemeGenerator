@@ -11,13 +11,6 @@ function onInit() {
 // RENDER THE MEME TO DOM
 function renderMeme() {
     const meme = getMeme()
-    const img = getImgById(meme.selectedImgId)
-    getImg(meme)
-}
-
-// SET IMG TO CANVAS
-function getImg(meme) {
-    // const txt = meme.lines[meme.selectedLineIdx].txt
     const currImg = getImgById(meme.selectedImgId)
     var img = new Image()
     img.src = currImg.url
@@ -25,9 +18,13 @@ function getImg(meme) {
         gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
         meme.lines.map((line, lineIdx) => {
             return writeText(line.txt, line.x, line.y, lineIdx)
-
         })
     }
+}
+
+// CLEAR CANVAS
+function clearCanvas() {
+    gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
 }
 
 // DRAW THE TXT TO CANVAS
@@ -40,7 +37,6 @@ function writeText(txt, x, y, index) {
     gCtx.textAlign = `${meme.lines[index].align}`
     gCtx.strokeText(txt, x, y, gCanvas.width)
     gCtx.fillText(txt, x, y, gCanvas.width)
-    // gCtx.stroke()
 }
 
 // CHANGES THE TEXT FROM INPUT
@@ -111,7 +107,7 @@ function onAddLine() {
 
 // DELETE LINE
 function onDeleteLine() {
-    DeleteLine()
+    deleteLine()
     renderMeme()
 }
 

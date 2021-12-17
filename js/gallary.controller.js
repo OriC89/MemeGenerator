@@ -13,5 +13,15 @@ function renderGallery() {
 // SELECTING IMG TO EDITOR
 function onImgSelect(imdId) {
     imgSelect(imdId)
+    document.querySelector('.gallary').classList.toggle('active')
+    document.querySelector('.meme-generator').classList.toggle('active')
+    document.querySelector('.about').classList.toggle('active')
     renderMeme()
+}
+
+function onToggleGallary() {
+    clearText()
+    document.querySelector('.gallary').classList.toggle('active')
+    document.querySelector('.meme-generator').classList.toggle('active')
+    document.querySelector('.about').classList.toggle('active')
 }

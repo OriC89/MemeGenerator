@@ -28,34 +28,37 @@ function getMeme() {
     return gMeme
 }
 
-// RETURN CANVAS 
-function getCanvas() {
-    return gCanvas
-}
-
 // ADDS NEW LINE OF TXT
 function addLine() {
-    if (gMeme.lines[0].txt === '') return
+    // if (gMeme.lines[gMeme.selectedLineIdx].txt === '') return
     if (gMeme.lines.length > 2) return
     gMeme.lines.push({
         txt: '',
-        size: gMeme.lines[gMeme.selectedLineIdx].size,
-        align: gMeme.lines[gMeme.selectedLineIdx].align,
-        color: gMeme.lines[gMeme.selectedLineIdx].color,
-        stroke: gMeme.lines[gMeme.selectedLineIdx].stroke,
-        font: gMeme.lines[gMeme.selectedLineIdx].font,
-        x: gMeme.lines[gMeme.selectedLineIdx].x,
-        y: gMeme.lines[gMeme.selectedLineIdx].y + 160
+        size: 50,
+        align: 'center',
+        color: 'white',
+        stroke: 'black',
+        font: 'Impact',
+        x: gCanvas.width / 2,
+        y: calcY()
     })
-    gMeme.selectedLineIdx++
-    console.log('gMeme.selectedLineIdx:', gMeme.selectedLineIdx)
+    clearText()
+    gMeme.selectedLineIdx = gMeme.lines.length - 1
+}
 
+function calcY() {
+    var y = 0
+    if (gMeme.lines.length === 1) y = 70
+    if (gMeme.lines.length - 1) y = 220
+    if (gMeme.lines.length - 2) y = 430
+    return y
 }
 
 // DELETE LINE
-function DeleteLine() {
+function deleteLine() {
     gMeme.lines.splice(gMeme.selectedLineIdx, 1)
-    gMeme.selectedLineIdx = 0
+    if (gMeme.selectedLineIdx > gMeme.lines.length) gMeme.selectedLineIdx--
+    if (gMeme.selectedLineIdx === gMeme.lines.length) gMeme.selectedLineIdx = 0
 }
 
 // TOGGLE BETWEEN LINES
@@ -63,11 +66,6 @@ function setLineIndex() {
     var lineIndex = gMeme.selectedLineIdx
     if (lineIndex === gMeme.lines.length - 1) gMeme.selectedLineIdx = 0
     else gMeme.selectedLineIdx++
-}
-
-// CHANGES FONT
-function setFont(font) {
-    gMeme.lines[gMeme.selectedLineIdx].font = font
 }
 
 // SAVE TO STORAGE
@@ -79,21 +77,6 @@ function _saveMemeToStorage() {
 function DownloadCanvas(elLink) {
     elLink.href = gCanvas.toDataURL();
     elLink.download = 'my-img.png';
-}
-
-// ALIGN TXT LEFT
-function setAlignLeft() {
-    gMeme.lines[gMeme.selectedLineIdx].align = 'right'
-}
-
-// ALIGN TXT RIGHT
-function setAlignRight() {
-    gMeme.lines[gMeme.selectedLineIdx].align = 'left'
-}
-
-// ALIGN TXT CENTER
-function setAlignCenter() {
-    gMeme.lines[gMeme.selectedLineIdx].align = 'center'
 }
 
 // UPLOAD TO CANVAS
@@ -128,6 +111,7 @@ function doUploadImg(imgDataUrl, onSuccess) {
 }
 
 // CHANGES THE TXT 
+const clearText = () => document.querySelector('.txt-line').value = 'Write Your Text Here'
 const setLineTxt = (elTxt) => gMeme.lines[gMeme.selectedLineIdx].txt = elTxt
 const setDecreasedTextSize = () => gMeme.lines[gMeme.selectedLineIdx].size -= 5
 const setIncreasedTextSize = () => gMeme.lines[gMeme.selectedLineIdx].size += 5
@@ -135,4 +119,10 @@ const setColor = (color) => gMeme.lines[gMeme.selectedLineIdx].color = color
 const setStrokeColor = (color) => gMeme.lines[gMeme.selectedLineIdx].stroke = color
 const setTxtUp = () => gMeme.lines[gMeme.selectedLineIdx].y -= 5
 const setTxtDown = () => gMeme.lines[gMeme.selectedLineIdx].y += 5
+const setAlignLeft = () => gMeme.lines[gMeme.selectedLineIdx].align = 'right'
+const setAlignRight = () => gMeme.lines[gMeme.selectedLineIdx].align = 'left'
+const setAlignCenter = () => gMeme.lines[gMeme.selectedLineIdx].align = 'center'
+const setFont = (font) => gMeme.lines[gMeme.selectedLineIdx].font = font
+
+
 

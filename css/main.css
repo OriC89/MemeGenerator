@@ -7,8 +7,22 @@ body {
   margin: 0;
 }
 
+img {
+  width: 100%;
+  object-fit: cover;
+}
+
 button {
   cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 0;
 }
 
 /* HELPERS */
@@ -38,6 +52,14 @@ button {
   flex-direction: column;
 }
 
+.none-active {
+  display: none;
+}
+
+.active {
+  display: flex;
+}
+
 /* LAYOUT */
 .main-layout {
   max-width: 1100px;
@@ -51,22 +73,29 @@ button {
 }
 
 .main-nav li {
-  font-size: 1.4875rem;
   width: 4.6875rem;
+  font-size: 1.4875rem;
+}
+
+.main-nav li:first-child {
+  padding-right: 10px;
+  border-right: 1px solid rgba(4, 10, 44, 0.281);
 }
 
 .main-nav a {
-  color: rgb(255, 255, 255);
-  font-family: "Montserrat";
   display: flex;
+  height: 65px;
   justify-content: center;
   align-items: center;
   text-decoration: none;
   font-weight: 400;
+  font-family: "Montserrat";
+  color: rgb(255, 255, 255);
 }
 
 .main-nav li a:hover {
   color: #040a2c;
+  font-weight: 700;
   box-shadow: inset 0px -4px 0 rgb(4, 10, 44);
 }
 
@@ -76,22 +105,22 @@ button {
 }
 
 .logo img {
-  padding: 10px 0px;
-  width: 20%;
+  padding: 15px 0px;
+  width: 150px;
 }
 
 /* GALLARY */
 .gallary img {
+  cursor: pointer;
   width: 32%;
-  padding-right: 20px;
   padding-bottom: 25px;
 }
 
 .imges-gallary {
-  padding-left: 50px;
+  padding: 0px 25px;
   padding-top: 25px;
-  background-color: rgb(227, 227, 227);
   flex-wrap: wrap;
+  background-color: rgb(227, 227, 227);
 }
 
 /* MAIN */
@@ -103,16 +132,57 @@ main {
   height: 30px;
 }
 
+.names {
+  color: rgb(0, 0, 0);
+  font-size: 1.5625rem;
+  font-weight: 700;
+  font-family: "Montserrat";
+}
+
+/* ABOUT */
+
+.about-info {
+  flex-direction: column;
+}
+
+.about-info p {
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.about-img-container img {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+}
+
+.social-nav li {
+  display: inline;
+}
+
+.social-nav li {
+  display: inline;
+}
+
+.social-nav img {
+  width: 5%;
+}
+
 /* FOOTER */
 
 .footer {
   text-align: center;
-  font-weight: 250;
   font: 1.1875rem;
   font-family: "Montserrat";
   background-color: rgb(255, 127, 0);
 }
+.footer-logo img {
+  padding-top: 80px;
+  padding-bottom: 20px;
+  width: 15%;
+}
 
 .footer h3 {
+  font-weight: 100;
   padding-bottom: 80px;
 }
