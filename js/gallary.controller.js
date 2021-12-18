@@ -13,7 +13,7 @@ function renderGallery() {
 // RESET LINE TXT
 function resetLineTxt() {
     const elInput = document.querySelector('.txt-line')
-    elInput.value = `Your are in line ${gMeme.selectedLineIdx}`
+    elInput.value = `Line ${gMeme.selectedLineIdx}`
 }
 
 // SELECTING IMG TO EDITOR
