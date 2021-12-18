@@ -1,12 +1,16 @@
 'use strict'
 
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
+var gCanvas
+var gCtx
 
+// INIT 
 function onInit() {
     gCanvas = document.getElementById('my-canvas')
     gCtx = gCanvas.getContext('2d')
     createImgs()
     renderGallery()
+    sortKeyWords()
     addEventListeners()
     renderMeme()
 }
@@ -92,13 +96,13 @@ function onAlignRight() {
 }
 
 // MOVE TXT UP
-function onMoveUp() {
+function onMoveTxtUp() {
     setTxtUp()
     renderMeme()
 }
 
 // MOVE TXT DOWN
-function onMoveDown() {
+function onMoveTxtDown() {
     setTxtDown()
     renderMeme()
 }
@@ -130,25 +134,6 @@ function onToggleLine() {
     setTimeout(drawRectLine, 50, gMeme.selectedLineIdx)
 }
 
-// UPLOAD IMAGES FROM LOCAL USER
-function onImgInput(ev) {
-    loadImgFromLocal(ev, renderUploadedImgToCanvas)
-}
-
-function loadImgFromLocal(ev, onImageReady) {
-    var reader = new FileReader()
-    reader.onload = (event) => {
-        var img = new Image()
-        img.onload = onImageReady.bind(null, img)
-        img.src = event.target.result
-    }
-    reader.readAsDataURL(ev.target.files[0])
-}
-
-function renderUploadedImgToCanvas(img) {
-    gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
-}
-
 // DOWNLOAD IMG FROM CANVAS
 function downloadCanvas(elLink) {
     elLink.href = gCanvas.toDataURL();
@@ -175,12 +160,12 @@ function getEvPos(ev) {
 
 // ADD LISTERNERS
 function addEventListeners() {
-    gCanvas.addEventListener('mousedown', onDown);
-    gCanvas.addEventListener('mousemove', onMove);
-    gCanvas.addEventListener('mouseup', onUp);
-    gCanvas.addEventListener('touchstart', onDown);
-    gCanvas.addEventListener('touchmove', onMove);
-    gCanvas.addEventListener('touchend', onUp);
+    gCanvas.addEventListener('mousedown', onClickDown);
+    gCanvas.addEventListener('mousemove', onMoveText);
+    gCanvas.addEventListener('mouseup', onMoveUp);
+    gCanvas.addEventListener('touchstart', onClickDown);
+    gCanvas.addEventListener('touchmove', onMoveText);
+    gCanvas.addEventListener('touchend', onMoveUp);
 }
 
 // ADD RECTANGLE
@@ -207,14 +192,14 @@ function drawRectLine(idx) {
 }
 
 // ON MOVE UP EV
-function onUp(ev) {
+function onMoveUp(ev) {
     if (!gMeme.lines[gMeme.selectedLineIdx]) return
     gMeme.lines[gMeme.selectedLineIdx].isDraggable = false
     setTimeout(drawRectLine, 50, gMeme.selectedLineIdx)
 }
 
 // ON MOVE EV
-function onMove(ev) {
+function onMoveText(ev) {
     if (gMeme.lines[gMeme.selectedLineIdx] && gMeme.lines[gMeme.selectedLineIdx].isDraggable) {
         let line = gMeme.lines[gMeme.selectedLineIdx]
         let pos = getEvPos(ev)
@@ -226,7 +211,7 @@ function onMove(ev) {
 }
 
 // ON MOVE DOWN EV
-function onDown(ev) {
+function onClickDown(ev) {
     let pos = getEvPos(ev);
     let lineClickedIdx = getLineIdxByPos(pos);
     if (lineClickedIdx === -1) {
@@ -241,7 +226,7 @@ function onDown(ev) {
     gMeme.selectedLineIdx = lineClickedIdx
     clearCanvas()
     renderMeme()
-    setTimeout(drawRectLine, 50, gMeme.selectedLineIdx)
+    setTimeout(drawRectLine, 20, gMeme.selectedLineIdx)
     gMeme.lines[lineClickedIdx].isDraggable = true;
     gMeme.lines[lineClickedIdx].isEditable = true;
 }
@@ -274,4 +259,39 @@ function getLineIdxByPos(pos) {
 // CLEAR CANVAS
 function clearCanvas() {
     gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
+}
+
+// SERACH
+function onSearch(elKey) {
+    searchByKeyWords(elKey + '')
+    renderSearch()
+}
+
+// RENDER SEARCH
+function renderSearch() {
+    var filterdImgs = getSortedImg()
+    var elImgs = document.querySelector('.imges-gallary')
+    elImgs.innerHTML = ''
+    filterdImgs.map(img => {
+        elImgs.innerHTML += `<img href="#my-canvas" class="img" onclick="onImgSelect(${img.id})" src="${img.url}">`
+    })
+}
+
+// UPLOAD IMAGES FROM LOCAL USER
+function onImgInput(ev) {
+    loadImgFromLocal(ev, renderUploadedImgToCanvas)
+}
+
+function loadImgFromLocal(ev, onImageReady) {
+    var reader = new FileReader()
+    reader.onload = (event) => {
+        var img = new Image()
+        img.onload = onImageReady.bind(null, img)
+        img.src = event.target.result
+    }
+    reader.readAsDataURL(ev.target.files[0])
+}
+
+function renderUploadedImgToCanvas(img) {
+    gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
 }

@@ -10,7 +10,7 @@ function renderGallery() {
     })
 }
 
-
+// RESET LINE TXT
 function resetLineTxt() {
     const elInput = document.querySelector('.txt-line')
     elInput.value = `Your are in line ${gMeme.selectedLineIdx}`
@@ -23,14 +23,24 @@ function onImgSelect(imdId) {
     document.querySelector('.gallary').classList.toggle('active')
     document.querySelector('.meme-generator').classList.toggle('active')
     document.querySelector('.about').classList.toggle('active')
+    toggleSearchDisplay()
     renderMeme()
 }
 
+// TOGGLE EDITOR GALLARY BTN
 function onToggleGallary() {
     document.querySelector('.gallary').classList.toggle('active')
     document.querySelector('.meme-generator').classList.toggle('active')
     document.querySelector('.about').classList.toggle('active')
+    toggleSearchDisplay()
+    clearText()
+}
+
+// TOGGLE SEARCH BAR
+function toggleSearchDisplay() {
     const eLink = document.querySelector('.gallary-link')
     eLink.innerText = (eLink.innerText === "Gallary") ? 'Editor' : 'Gallary'
-    clearText()
-}   
+    const elSearch = document.querySelector('.search')
+    elSearch.style.display = (eLink.innerText === 'Gallary') ? 'flex' : 'none'
+}
+

@@ -141,6 +141,25 @@ main {
   background-color: rgb(214, 214, 214);
 }
 
+.search h1 {
+  display: inline;
+  line-height: 1.5;
+  font-size: 25px;
+  margin-right: 15px;
+}
+
+.search input {
+  height: 40px;
+}
+.search {
+  padding: 15px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
 .canvas-container {
   margin: 50px 50px;
   height: 500px;

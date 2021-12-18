@@ -3,8 +3,8 @@
 const MEME_KEY = 'MyMemesDB'
 
 // CANVAS VARIABLES 
-var gCanvas
-var gCtx
+var gSort = []
+var gFillterImg = []
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 var gMeme = {
     selectedImgId: 0,
@@ -50,10 +50,11 @@ function addLine() {
     gMeme.selectedLineIdx = gMeme.lines.length - 1
 }
 
+// CALCULATE Y POS
 function calcY() {
     var y = 0
     if (gMeme.lines.length === 1) y = 70
-    if (gMeme.lines.length - 1) y = 220
+    if (gMeme.lines.length - 1) y = 230
     if (gMeme.lines.length - 2) y = 430
     return y
 }
@@ -108,22 +109,6 @@ function doUploadImg(imgDataUrl, onSuccess) {
         })
 }
 
-
-// CHANGES THE TXT 
-const clearText = () => document.querySelector('.txt-line').value = 'Text Here'
-const setLineTxt = (elTxt) => gMeme.lines[gMeme.selectedLineIdx].txt = elTxt
-const setDecreasedTextSize = () => gMeme.lines[gMeme.selectedLineIdx].size -= 5
-const setIncreasedTextSize = () => gMeme.lines[gMeme.selectedLineIdx].size += 5
-const setColor = (color) => gMeme.lines[gMeme.selectedLineIdx].color = color
-const setStrokeColor = (color) => gMeme.lines[gMeme.selectedLineIdx].stroke = color
-const setTxtUp = () => gMeme.lines[gMeme.selectedLineIdx].y -= 5
-const setTxtDown = () => gMeme.lines[gMeme.selectedLineIdx].y += 5
-const setAlignLeft = () => gMeme.lines[gMeme.selectedLineIdx].align = 'right'
-const setAlignRight = () => gMeme.lines[gMeme.selectedLineIdx].align = 'left'
-const setAlignCenter = () => gMeme.lines[gMeme.selectedLineIdx].align = 'center'
-const setFont = (font) => gMeme.lines[gMeme.selectedLineIdx].font = font
-
-
 // GET LINE MEASURES BY ID
 function getLineSizeById(line) {
     let metrics = gCtx.measureText(line.txt)
@@ -137,9 +122,68 @@ function getLineById(idx) {
     return gMeme.lines[idx]
 }
 
+// MOVE LINE EV
 function moveLine(dx, dy) {
     let line = gMeme.lines[gMeme.selectedLineIdx]
     line.x += dx;
     line.y += dy;
 }
+
+// SEARCH BY KEYWORDS
+function searchByKeyWords(elKey) {
+    var regex = RegExp(elKey)
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
+    gFillterImg = gImgs.filter(img => {
+        for (let i = 0; i < img.keywords.length; i++) {
+            var word = img.keywords[i]
+            if (regex.test(word)) return true
+            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/test
+        }
+    })
+}
+
+// SORT KEYWORDS
+function sortKeyWords() {
+    var mapObjectKeys = {}
+    gImgs.map(img => {
+        for (let i = 0; i < img.keywords.length; i++) {
+            var word = img.keywords[i]
+            if (mapObjectKeys[word]) mapObjectKeys[word]++
+            else mapObjectKeys[word] = 1
+        }
+    })
+    gSort = []
+    for (let key in mapObjectKeys) {
+        if (mapObjectKeys[key] > 1) gSort.push([key, mapObjectKeys[key]])
+    }
+    gSort.sort((a, b) => b[1] - a[1])
+}
+
+// CHANGES THE TXT 
+const clearText = () => document.querySelector('.txt-line').value = 'Text Here'
+const setLineTxt = (elTxt) => gMeme.lines[gMeme.selectedLineIdx].txt = elTxt
+
+// CHANGE TXT SIZE
+const setDecreasedTextSize = () => gMeme.lines[gMeme.selectedLineIdx].size -= 5
+const setIncreasedTextSize = () => gMeme.lines[gMeme.selectedLineIdx].size += 5
+
+// CHANGE TXT COLOR 
+const setColor = (color) => gMeme.lines[gMeme.selectedLineIdx].color = color
+const setStrokeColor = (color) => gMeme.lines[gMeme.selectedLineIdx].stroke = color
+
+// MOVE TXT LINE
+const setTxtUp = () => gMeme.lines[gMeme.selectedLineIdx].y -= 5
+const setTxtDown = () => gMeme.lines[gMeme.selectedLineIdx].y += 5
+
+// TXT ALIGNMENT 
+const setAlignLeft = () => gMeme.lines[gMeme.selectedLineIdx].align = 'right'
+const setAlignRight = () => gMeme.lines[gMeme.selectedLineIdx].align = 'left'
+const setAlignCenter = () => gMeme.lines[gMeme.selectedLineIdx].align = 'center'
+
+// CHANGE TXT FONT
+const setFont = (font) => gMeme.lines[gMeme.selectedLineIdx].font = font
+
+// SORTERS & FILTERS
+const getSortedImg = () => gFillterImg;
+const getCurrImg = () => gCurrImg
 

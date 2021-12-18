@@ -24,6 +24,16 @@
     </header>
 
     <main class="main-layout">
+
+        <section class="active none-active search">
+            <div class="flex">
+                <h1 class="title-search">Pick A Picture</h1>
+                <input list="key-words" type="search" id="search-input" onkeyup="onSearch(this.value)">
+                <datalist id="key-words">
+                </datalist>
+            </div>
+        </section>
+
         <section id="gallary" class="active none-active gallary">
             <div class="imges-gallary flex space-between align-center"></div>
         </section>
@@ -39,9 +49,9 @@
                     <input class="txt-line" type="text" onkeyup="onSetLineTxt(this.value)">
                     <button class="btn-edtiror" onclick="onToggleLine(value)"><img class="editorimg"
                             src="./img/editor/toggle.png" alt=""></button>
-                    <button class="btn-edtiror" onclick="onMoveUp()"><img class="editorimg" src="./img/editor/up.png"
+                    <button class="btn-edtiror" onclick="onMoveTxtUp()"><img class="editorimg" src="./img/editor/up.png"
                             alt=""></button>
-                    <button class="btn-edtiror" onclick="onMoveDown()"><img class="editorimg"
+                    <button class="btn-edtiror" onclick="onMoveTxtDown()"><img class="editorimg"
                             src="./img/editor/down.png" alt=""></button>
                     <button class="btn-edtiror" onclick="onAddLine()"><img class="editorimg" src="./img/editor/add.png"
                             alt=""></button>
