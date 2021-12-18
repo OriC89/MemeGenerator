@@ -18,7 +18,9 @@ var gMeme = {
             stroke: 'black',
             font: 'Impact',
             x: 240,
-            y: 70
+            y: 60,
+            isDraggable: false,
+            isEditable: false
         }
     ]
 }
@@ -40,7 +42,9 @@ function addLine() {
         stroke: 'black',
         font: 'Impact',
         x: gCanvas.width / 2,
-        y: calcY()
+        y: calcY(),
+        isDraggable: false,
+        isEditable: false
     })
     clearText()
     gMeme.selectedLineIdx = gMeme.lines.length - 1
@@ -71,12 +75,6 @@ function setLineIndex() {
 // SAVE TO STORAGE
 function _saveMemeToStorage() {
     saveToStorage(MEME_KEY, gMeme)
-}
-
-// DOWNLOAD CANVAS IMG
-function DownloadCanvas(elLink) {
-    elLink.href = gCanvas.toDataURL();
-    elLink.download = 'my-img.png';
 }
 
 // UPLOAD TO CANVAS
@@ -110,8 +108,9 @@ function doUploadImg(imgDataUrl, onSuccess) {
         })
 }
 
+
 // CHANGES THE TXT 
-const clearText = () => document.querySelector('.txt-line').value = 'Write Your Text Here'
+const clearText = () => document.querySelector('.txt-line').value = 'Text Here'
 const setLineTxt = (elTxt) => gMeme.lines[gMeme.selectedLineIdx].txt = elTxt
 const setDecreasedTextSize = () => gMeme.lines[gMeme.selectedLineIdx].size -= 5
 const setIncreasedTextSize = () => gMeme.lines[gMeme.selectedLineIdx].size += 5
@@ -125,4 +124,22 @@ const setAlignCenter = () => gMeme.lines[gMeme.selectedLineIdx].align = 'center'
 const setFont = (font) => gMeme.lines[gMeme.selectedLineIdx].font = font
 
 
+// GET LINE MEASURES BY ID
+function getLineSizeById(line) {
+    let metrics = gCtx.measureText(line.txt)
+    let width = metrics.width
+    let height = line.size
+    return { width, height }
+}
+
+//GET LINE BY ID
+function getLineById(idx) {
+    return gMeme.lines[idx]
+}
+
+function moveLine(dx, dy) {
+    let line = gMeme.lines[gMeme.selectedLineIdx]
+    line.x += dx;
+    line.y += dy;
+}
 

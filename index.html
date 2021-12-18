@@ -12,11 +12,11 @@
 <body onload="onInit()">
 
     <header class="header">
-        <div class="main-layout flex align-center space-between">
+        <div class="header-container main-layout flex align-center space-between">
             <div class="logo"><img src="./img/logo/LOGO.png" alt=""></div>
             <nav class="main-nav">
                 <ul class="clean-list flex">
-                    <li><a onclick="onToggleGallary()" href="#Gallary">Gallary</a></li>
+                    <li><a class="gallary-link" onclick="onToggleGallary()" href="#Gallary">Gallary</a></li>
                     <li><a href="#about">About</a></li>
                 </ul>
             </nav>
@@ -29,80 +29,79 @@
         </section>
 
         <section class="meme-generator flex none-active">
-            <div class="canvas-container">
-                <canvas id="my-canvas" onclick="onCanvasClick(event)" width="500" height="500"></canvas>
+            <div class="canvas-container flex">
+                <canvas id="my-canvas" width="500" height="500"></canvas>
             </div>
 
 
-            <div class="editor-container">
+            <div class="editor-container flex">
                 <div class="lines-container flex">
-                    <input class="txt-line" type="text" placeholder="Write Your Text Here"
-                        onkeyup="onSetLineTxt(this.value)">
-                    <button onclick="onToggleLine(value)"><img class="editorimg" src="./img/editor/toggle.png"
+                    <input class="txt-line" type="text" onkeyup="onSetLineTxt(this.value)">
+                    <button class="btn-edtiror" onclick="onToggleLine(value)"><img class="editorimg"
+                            src="./img/editor/toggle.png" alt=""></button>
+                    <button class="btn-edtiror" onclick="onMoveUp()"><img class="editorimg" src="./img/editor/up.png"
                             alt=""></button>
-                    <button onclick="onMoveUp()"><img class="editorimg" src="./img/editor/up.png" alt=""></button>
-                    <button onclick="onMoveDown()"><img class="editorimg" src="./img/editor/down.png" alt=""></button>
-                    <button onclick="onAddLine()"><img class="editorimg" src="./img/editor/add.png" alt=""></button>
-                    <button onclick="onDeleteLine()"><img class="editorimg" src="./img/editor/trash.png"
+                    <button class="btn-edtiror" onclick="onMoveDown()"><img class="editorimg"
+                            src="./img/editor/down.png" alt=""></button>
+                    <button class="btn-edtiror" onclick="onAddLine()"><img class="editorimg" src="./img/editor/add.png"
                             alt=""></button>
+                    <button class="btn-edtiror" onclick="onDeleteLine()"><img class="editorimg"
+                            src="./img/editor/trash.png" alt=""></button>
                 </div>
 
 
                 <div class="text-container flex">
-                    <button onclick="onIncreaseTextSize()"><img class="editorimg"
+                    <button class="btn-edtiror" onclick="onIncreaseTextSize()"><img class="editorimg"
                             src="./img/editor/increase font - icon.png" alt=""></button>
-                    <button onclick="onDecreaseTextSize()"><img class="editorimg"
+                    <button class="btn-edtiror" onclick="onDecreaseTextSize()"><img class="editorimg"
                             src="./img/editor/decrease font - icon.png" alt=""></button>
-                    <button onclick="onAlignLeft()"><img class="editorimg" src="./img/editor/align-to-left.png"
-                            alt=""></button>
-                    <button onclick="onAlignCenter()"><img class="editorimg"
+                    <button class="btn-edtiror" onclick="onAlignLeft()"><img class="editorimg"
+                            src="./img/editor/align-to-left.png" alt=""></button>
+                    <button class="btn-edtiror" onclick="onAlignCenter()"><img class="editorimg"
                             src="./img/editor/center-text-alignment.png" alt=""></button>
-                    <button onclick="onAlignRight()"><img class="editorimg" src="./img/editor/align-to-right.png"
-                            alt=""></button>
+                    <button class="btn-edtiror" onclick="onAlignRight()"><img class="editorimg"
+                            src="./img/editor/align-to-right.png" alt=""></button>
                 </div>
 
 
                 <div class="font-controller flex">
                     <button>
+                        <img class="editorimg" src="./img/editor/font.png" alt="">
                         <select name="font" onchange="onSetFont(this.value)">
                             <option value="Impact">Impact</option>
-                            <option value="times-new-roman">Times New Roman</option>
                             <option value="Arial">Arial</option>
+                            <option value="Times-New-Roman">Times New Roman</option>
                             <option value="David">David</option>
                         </select>
-                        <img class="editorimg" src="./img/editor/font.png" alt="">
                     </button>
-                    <button><img class="editorimg" src="./img/editor/paint-board-and-brush.png" alt=""><input
-                            type="color" class="editorimg" onchange="onGetColor(this.value)"></button>
-                    <button><img class="editorimg" src="./img/editor/text stroke.png" alt=""><input type="color"
-                            class="editorimg" onchange="onStrokeColor(this.value)"></button>
+                    <button class="btn-edtiror"><img class="editorimg" src="./img/editor/paint-board-and-brush.png"
+                            alt=""><input type="color" class="editorimg" onchange="onGetColor(this.value)"></button>
+                    <button class="btn-edtiror"><img class="editorimg" src="./img/editor/text stroke.png" alt=""><input
+                            type="color" class="editorimg" onchange="onStrokeColor(this.value)"></button>
                 </div>
 
 
                 <div class="actions flex">
-                    <button><a href="#" class="btn" onclick="DownloadCanvas(this)" download="my-img.jpg"><img
-                                src="./img/editor/download.png" class="editorimg" alt=""></a></button>
-                    <button class="fbshare"><img class="editorimg" src="./img/editor/facebook-logo.png" alt=""></button>
                     <button><input type="file" onchange="onImgInput(event)" /></button>
+                    <button class="btn-edtiror"><a href="#" onclick="onDownloadCanvas(this)" download="my-img.jpg"><img
+                                src="./img/editor/download.png" class="editorimg" alt=""></a></button>
+                    <button class="fbshare btn-edtiror"><img class="editorimg" src="./img/editor/facebook-logo.png"
+                            alt=""></button>
                 </div>
             </div>
         </section>
     </main>
 
     <section id="about" class="about main-layout flex align-center active none-active">
-        <div class="about-img-container">
+        <div class="about-img-container flex">
             <img src="./img/social/Ori.jpg" alt="">
         </div>
-        <div class="about-info flex space-between">
+        <div class="about-info flex">
             <h2 class="names">Ori Cohen</h2>
             <p class="about-txt">
                 33, From Tel-Aviv.
                 Bachelor's degree - marketing and advertising.</p>
-            <p>5+ years of experience of projects and events management - mainly in the gaming industry,
-                Social media management and importation and distribution.</p>
-            <p>My hobbies: discovering nature mysteries, Playing Call of duty Warzone and watching my favorite sports
-                teams losing.</p>
-            <div class="lalala flex">
+            <div class="flex">
                 <ul class="social-nav clean-list">
                     <li>
                         <a href="https://www.facebook.com/seeku.innerot">
@@ -124,14 +123,12 @@
         </div>
     </section>
 
-
     <footer class="footer">
-        <div class=" main-layout">
+        <div class="footer-container main-layout flex">
             <div class="footer-logo"><img src="./img/logo/LOGO.png" alt=""></div>
-            <h3>All rights reserved 2019</h3>
+            <h3>All rights reserved 2021</h3>
         </div>
     </footer>
-
 
     <script src="js/utils.js"></script>
     <script src="js/services/storage.service.js"></script>

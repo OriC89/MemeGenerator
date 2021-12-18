@@ -10,9 +10,16 @@ function renderGallery() {
     })
 }
 
+
+function resetLineTxt() {
+    const elInput = document.querySelector('.txt-line')
+    elInput.value = `Your are in line ${gMeme.selectedLineIdx}`
+}
+
 // SELECTING IMG TO EDITOR
 function onImgSelect(imdId) {
     imgSelect(imdId)
+    resetLineTxt()
     document.querySelector('.gallary').classList.toggle('active')
     document.querySelector('.meme-generator').classList.toggle('active')
     document.querySelector('.about').classList.toggle('active')
@@ -20,8 +27,10 @@ function onImgSelect(imdId) {
 }
 
 function onToggleGallary() {
-    clearText()
     document.querySelector('.gallary').classList.toggle('active')
     document.querySelector('.meme-generator').classList.toggle('active')
     document.querySelector('.about').classList.toggle('active')
-}
+    const eLink = document.querySelector('.gallary-link')
+    eLink.innerText = (eLink.innerText === "Gallary") ? 'Editor' : 'Gallary'
+    clearText()
+}   
