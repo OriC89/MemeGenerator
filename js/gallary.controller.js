@@ -6,7 +6,7 @@ function renderGallery() {
     var elImgs = document.querySelector('.imges-gallary')//getting the right div
     const imgs = getImgs()
     imgs.map(img => {
-        elImgs.innerHTML += `<img href="#my-canvas" class="img" onclick="onImgSelect(${img.id})" src="${img.url}">`
+        elImgs.innerHTML += `<img href="#my-canvas" class="meme-img" onclick="onImgSelect(${img.id})" src="${img.url}">`
     })
 }
 

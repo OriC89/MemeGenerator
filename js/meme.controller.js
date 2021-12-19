@@ -17,6 +17,11 @@ function onInit() {
     renderMeme()
 }
 
+// TOGGLE MENU
+function toggleMenu() {
+    document.body.classList.toggle('menu-open');
+}
+
 // RENDER THE MEME TO DOM
 function renderMeme() {
     const meme = getMeme()
@@ -47,7 +52,6 @@ function writeText(txt, x, y, index) {
     gCtx.strokeText(txt, x, y, gCanvas.width)
     gCtx.fillText(txt, x, y, gCanvas.width)
 }
-
 
 // CHANGES THE TEXT FROM INPUT
 function onSetLineTxt(elTxt) {
@@ -137,7 +141,7 @@ function onToggleLine() {
 }
 
 // DOWNLOAD IMG FROM CANVAS
-function downloadCanvas(elLink) {
+function onDownloadCanvas(elLink) {
     elLink.href = gCanvas.toDataURL()
     elLink.download = 'my-img.png'
 }
