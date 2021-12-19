@@ -22,7 +22,7 @@ function renderMeme() {
     const meme = getMeme()
     const currImg = getImgById(meme.selectedImgId)
     var img = new Image()
-    img.src = (gIsUploaded) ? gUploadedImgUrl : gcurrImg.url
+    img.src = (gIsUploaded) ? gUploadedImgUrl : currImg.url
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
         meme.lines.map((line, lineIdx) => {
