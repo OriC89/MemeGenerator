@@ -18,6 +18,7 @@ function resetLineTxt() {
 
 // SELECTING IMG TO EDITOR
 function onImgSelect(imdId) {
+    gIsUploaded = false
     imgSelect(imdId)
     resetLineTxt()
     document.querySelector('.gallary').classList.toggle('active')

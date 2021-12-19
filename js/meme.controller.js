@@ -3,6 +3,8 @@
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 var gCanvas
 var gCtx
+var gUploadedImgUrl
+var gIsUploaded
 
 // INIT 
 function onInit() {
@@ -20,7 +22,7 @@ function renderMeme() {
     const meme = getMeme()
     const currImg = getImgById(meme.selectedImgId)
     var img = new Image()
-    img.src = currImg.url
+    img.src = (gIsUploaded) ? gUploadedImgUrl : gcurrImg.url
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
         meme.lines.map((line, lineIdx) => {
@@ -31,7 +33,7 @@ function renderMeme() {
 
 // CLEAR CANVAS
 function clearCanvas() {
-    gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
+    gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height)
 }
 
 // DRAW THE TXT TO CANVAS
@@ -115,7 +117,7 @@ function onAddLine() {
 }
 
 // DELETE LINE
-function onDeleteLine() {
+function onRemoveLine() {
     deleteLine()
     resetLineTxt()
     renderMeme()
@@ -131,22 +133,18 @@ function onSetFont(font) {
 function onToggleLine() {
     setLineIndex()
     renderMeme()
-    setTimeout(drawRectLine, 50, gMeme.selectedLineIdx)
+    setTimeout(drawRectLine, 20, gMeme.selectedLineIdx)
 }
 
 // DOWNLOAD IMG FROM CANVAS
 function downloadCanvas(elLink) {
-    elLink.href = gCanvas.toDataURL();
-    elLink.download = 'my-img.png';
+    elLink.href = gCanvas.toDataURL()
+    elLink.download = 'my-img.png'
 }
 
 // GET EVENT POS
 function getEvPos(ev) {
-    var pos = {
-        x: ev.offsetX,
-        y: ev.offsetY
-    }
-
+    var pos = { x: ev.offsetX, y: ev.offsetY }
     if (gTouchEvs.includes(ev.type)) {
         ev.preventDefault()
         ev = ev.changedTouches[0]
@@ -160,12 +158,12 @@ function getEvPos(ev) {
 
 // ADD LISTERNERS
 function addEventListeners() {
-    gCanvas.addEventListener('mousedown', onClickDown);
-    gCanvas.addEventListener('mousemove', onMoveText);
-    gCanvas.addEventListener('mouseup', onMoveUp);
-    gCanvas.addEventListener('touchstart', onClickDown);
-    gCanvas.addEventListener('touchmove', onMoveText);
-    gCanvas.addEventListener('touchend', onMoveUp);
+    gCanvas.addEventListener('mousedown', onClickDown)
+    gCanvas.addEventListener('mousemove', onMoveText)
+    gCanvas.addEventListener('mouseup', onMoveUp)
+    gCanvas.addEventListener('touchstart', onClickDown)
+    gCanvas.addEventListener('touchmove', onMoveText)
+    gCanvas.addEventListener('touchend', onMoveUp)
 }
 
 // ADD RECTANGLE
@@ -195,7 +193,7 @@ function drawRectLine(idx) {
 function onMoveUp(ev) {
     if (!gMeme.lines[gMeme.selectedLineIdx]) return
     gMeme.lines[gMeme.selectedLineIdx].isDraggable = false
-    setTimeout(drawRectLine, 50, gMeme.selectedLineIdx)
+    setTimeout(drawRectLine, 20, gMeme.selectedLineIdx)
 }
 
 // ON MOVE EV
@@ -212,14 +210,14 @@ function onMoveText(ev) {
 
 // ON MOVE DOWN EV
 function onClickDown(ev) {
-    let pos = getEvPos(ev);
+    let pos = getEvPos(ev)
     let lineClickedIdx = getLineIdxByPos(pos);
     if (lineClickedIdx === -1) {
         gMeme.lines.forEach(line => {
             line.isEditable = false
         })
         document.querySelector('.txt-line').value = ''
-        gMeme.selectedLineIdx = gMeme.lines.length;
+        gMeme.selectedLineIdx = gMeme.lines.length
         renderMeme()
         return
     }
@@ -227,8 +225,8 @@ function onClickDown(ev) {
     clearCanvas()
     renderMeme()
     setTimeout(drawRectLine, 20, gMeme.selectedLineIdx)
-    gMeme.lines[lineClickedIdx].isDraggable = true;
-    gMeme.lines[lineClickedIdx].isEditable = true;
+    gMeme.lines[lineClickedIdx].isDraggable = true
+    gMeme.lines[lineClickedIdx].isEditable = true
 }
 
 // GET LINE INDEX WITH POS
@@ -258,7 +256,7 @@ function getLineIdxByPos(pos) {
 
 // CLEAR CANVAS
 function clearCanvas() {
-    gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
+    gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height)
 }
 
 // SERACH
@@ -288,10 +286,13 @@ function loadImgFromLocal(ev, onImageReady) {
         var img = new Image()
         img.onload = onImageReady.bind(null, img)
         img.src = event.target.result
+        gUploadedImgUrl = img.src
+        gIsUploaded = true
     }
     reader.readAsDataURL(ev.target.files[0])
 }
 
 function renderUploadedImgToCanvas(img) {
+    clearCanvas()
     gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
 }

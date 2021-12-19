@@ -78,16 +78,14 @@ function _saveMemeToStorage() {
     saveToStorage(MEME_KEY, gMeme)
 }
 
-// UPLOAD TO CANVAS
-function uploadImg() {
-    const imgDataUrl = gElCanvas.toDataURL();
+// SHARE MEME
+function shareMeme() {
+    const imgDataUrl = gCanvas.toDataURL();
     function onSuccess(uploadedImgUrl) {
         const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
-        document.querySelector('.testytest').innerHTML = `
-        <a class="btn" href="https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}'); return false;"> 
-        </a>`
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}`)
     }
-    doUploadImg(imgDataUrl, onSuccess);
+    doUploadImg(imgDataUrl, onSuccess)
 }
 
 function doUploadImg(imgDataUrl, onSuccess) {
@@ -125,8 +123,8 @@ function getLineById(idx) {
 // MOVE LINE EV
 function moveLine(dx, dy) {
     let line = gMeme.lines[gMeme.selectedLineIdx]
-    line.x += dx;
-    line.y += dy;
+    line.x += dx
+    line.y += dy
 }
 
 // SEARCH BY KEYWORDS

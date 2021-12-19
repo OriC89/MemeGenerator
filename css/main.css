@@ -62,10 +62,9 @@ h6 {
 
 .btn-edtiror {
   margin-left: 10px;
-  border-radius: 15%;
 }
 
-.editorimg {
+.editor-img {
   width: 30px;
   height: 30px;
 }
@@ -124,13 +123,13 @@ h6 {
 .gallary img {
   cursor: pointer;
   width: 330px;
-  padding-bottom: 25px;
+  border: 1px solid black;
 }
 
 .imges-gallary {
-  padding: 0px 25px;
-  padding-top: 25px;
   flex-wrap: wrap;
+  padding: 30px 20px;
+  gap: 30px;
   background-color: rgb(227, 227, 227);
 }
 
@@ -151,6 +150,7 @@ main {
 .search input {
   height: 40px;
 }
+
 .search {
   padding: 15px 0px;
   display: flex;
@@ -187,13 +187,6 @@ main {
   width: 100%;
 }
 
-.names {
-  color: rgb(0, 0, 0);
-  font-size: 1.5625rem;
-  font-weight: 700;
-  font-family: "Montserrat";
-}
-
 /* ABOUT */
 
 .about {
@@ -213,16 +206,19 @@ main {
   margin: 10px 0px;
 }
 
+.about-name {
+  color: rgb(0, 0, 0);
+  font-size: 1.5625rem;
+  font-weight: 700;
+  font-family: "Montserrat";
+}
+
 .about-img-container img {
-  border: 5px solid black;
+  border: 1px solid black;
   margin-left: 100px;
   width: 14rem;
   height: 14rem;
   border-radius: 50%;
-}
-
-.social-nav li {
-  display: inline;
 }
 
 .social-nav li {
@@ -262,6 +258,73 @@ main {
   padding-bottom: 80px;
 }
 
-/* DESKTOP */
+/* MOBILE - TILL 450 */
+@media (max-width: 500px) {
+  main {
+    border: none;
+  }
 
-/* MOBILE */
+  .main-layout {
+    min-width: 400px;
+  }
+
+  .logo img {
+    padding-left: 10px;
+  }
+
+  .gallary img {
+    width: 210px;
+    height: 210px;
+  }
+
+  .imges-gallary {
+    padding: 7px 8px;
+    gap: 10px;
+    justify-content: baseline;
+  }
+
+  .meme-generator {
+    flex-direction: column;
+  }
+
+  .canvas-container {
+    justify-content: center;
+    align-self: center;
+  }
+
+  .editor-container {
+    padding-bottom: 40px;
+  }
+
+  .lines-container .txt-line {
+    width: 90%;
+  }
+
+  .about {
+    flex-direction: column;
+  }
+
+  .about-img-container img {
+    margin-top: 20px;
+    width: 11rem;
+    height: 11rem;
+    margin-left: 0;
+  }
+
+  .about-info {
+    text-align: center;
+    height: 200px;
+  }
+
+  .social-nav-container {
+    justify-content: center;
+  }
+
+  .footer img {
+    padding-top: 25px;
+  }
+
+  .footer h3 {
+    padding-bottom: 35px;
+  }
+}
